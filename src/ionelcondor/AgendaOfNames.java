@@ -7,12 +7,11 @@ package ionelcondor;
 import java.util.Scanner;
 
 
-import java.util.Scanner;
 
 public class AgendaOfNames {
 
     String[] nameAgenda = new String[50];
-
+    private int index = 0;
 
     public static void main(String[] args) {
         System.out.println("AgendaTa versiunea 2.0");
@@ -88,31 +87,83 @@ public class AgendaOfNames {
         return option;
     }
 
+    private void Search() {
+
+        }
+
 
     private void daBunaZiua() {
         System.out.println("buna ziua");
     }
 
     private void createItem() {
+        String val = readName();
+        if (index < nameAgenda.length) {
+            nameAgenda[index] = val;
+            index++;
 
+        } else {
+
+
+            for (int i = 0; i < nameAgenda.length; i++) {
+                if (nameAgenda[i] == null) {
+                    nameAgenda[i] = val;
+                    System.out.println("debug:slot found, inserted ok:");
+                    break;
+                }
+
+
+            }
+
+        }
+    }
+
+    private void updateItem(){
+        boolean isFound = false;
+        String oldName = readName();
+        for (int i = 0; i < nameAgenda.length; i++) {
+            if (nameAgenda[i] != null) {
+                if (nameAgenda[i].equals(oldName)) {
+                        System.out.println("Names are found");
+                    System.out.println("Am gasit numele,introduceti noul nume:");
+                    String newName = readName();
+                    nameAgenda[i] = newName;
+                    isFound = true;
+                    System.out.println("Schimbare de nume efectuata cu succes");
+                }
+            }
+            if (!isFound)
+                System.out.println("Name not found in the Agenda.");
+            break;
+        }
     }
 
 
-    private void updateItem() {
-        //search and if found do an update
-
-    }
 
 
     private void deleteItem() {
-
+        boolean isFound = false;
+        String oldName = readName();
+        for (int i = 0; i < nameAgenda.length; i++) {
+            if (nameAgenda[i] != null) {
+                if (nameAgenda[i].equals(oldName)) {
+                    System.out.println("Names are found");
+                    nameAgenda[i] = null;
+                    isFound = true;
+                    System.out.println("Stergere a fost efectuata cu succes");
+                }
+            }
+            if (!isFound)
+                System.out.println("Name not found in the Agenda.");
+            break;
+        }
     }
-
 
     /* returns the index where the name was found or -1 if the name is not in the agenda*/
     private int searchAgenda() {
         int index = 0;
         return index;
+
     }
 
     /* returns the index where the name was found or -1 if the name is not in the agenda */
